@@ -32,6 +32,8 @@ int main(){
     //2페이지 집에서 행동
     player.HouseWork();
     
+    //탐색 선택
+    
     
     
     
