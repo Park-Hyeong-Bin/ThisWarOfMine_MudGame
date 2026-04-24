@@ -55,7 +55,7 @@ void Player::Loot(int count)
     }
 }
 
-void Player::Trade() const
+void Player::Trade() 
 {
     
     int tradeInput = 0;

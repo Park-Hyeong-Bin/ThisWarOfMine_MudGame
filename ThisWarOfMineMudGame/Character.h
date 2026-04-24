@@ -6,7 +6,7 @@ class Character
     //기본 능력치
     int power;
     int guard;
-    int maxHp, maxSanity,;
+    int maxHp, maxSanity;
     
     //파생능력치
     int Hp, Sanity;
@@ -14,7 +14,7 @@ class Character
     
     public:
     Character(int hp, int sanity, int power, int guard);
-    virtual ~Character();
+    virtual ~Character(){}
     
     //Getter
     int GetHp();
@@ -22,7 +22,7 @@ class Character
     int GetSanity();
     int GetMaxSanity();
     //기능 함수
-    bool isAlive() const { return (hp > 0); }
+    bool isAlive() const { return (Hp > 0); }
     void TakeDamage(int damage);
     virtual int Attack() const;
 };

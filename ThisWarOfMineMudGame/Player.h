@@ -22,5 +22,5 @@ class Player : public Character
     //기능함수
     void Loot(int cout = 1);
     void UseInventory(vector<int> Inventory);
-    void Trade() const;
+    void Trade();
 };

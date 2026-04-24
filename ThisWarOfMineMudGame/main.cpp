@@ -1,4 +1,8 @@
 #include <iostream>
+#include <string>
+#include "Character.h"
+#include "Player.h"
+
 
 using namespace std;
 
