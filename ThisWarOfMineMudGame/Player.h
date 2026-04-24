@@ -23,4 +23,5 @@ class Player : public Character
     void Loot(int cout = 1);
     void UseInventory(vector<int> Inventory);
     void Trade();
+    void HouseWork();
 };
