@@ -24,4 +24,5 @@ class Player : public Character
     void UseInventory(vector<int> Inventory);
     void Trade();
     void HouseWork();
+    void NewDay();
 };

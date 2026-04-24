@@ -1,7 +1,10 @@
 #include "Player.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
 Player::Player(const string& name)
-    :Character(25,25,15,0),
+    :Character(100,25,15,0),
     name(name)
 {
     Hp = maxHp;
@@ -33,6 +36,8 @@ void Player::Loot(int count)
         else
         {
             cout << "아무것도 발견하지 못했습니다...\n";
+            system("pause");
+            system("cls");
         }
     }
     if (Inventory.size() > 0)
@@ -40,18 +45,21 @@ void Player::Loot(int count)
         for (int i = 0; i < Inventory.size(); i++)
         {
             string itemName;
-            if (Inventory[i]== 1 ||Inventory[i]== 2 ||Inventory[i]== 3 ) itemName = "음식";
-            else if (Inventory[i] == 4|| Inventory[i] == 5||Inventory[i] == 6) itemName = "장작";
-            else if (Inventory[i] == 7) itemName = "의약품";
-            else if (Inventory[i] == 8) itemName = "의약품";
-            else if (Inventory[i] == 9) itemName = "무기";
+            if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
+            else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
+            else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
+            else if (Inventory[i] == 9) itemName = "무기 부품";
             else itemName = "None";
             cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
+            system("pause");
+            system("cls");       
         }
     }
     else
     {
         cout << "현재 아이템이 존재하지 않습니다.\n";
+        system("pause");
+        system("cls");
     }
 }
 
@@ -91,13 +99,16 @@ void Player::Trade()
             Hp += 50;
             if (Hp > maxHp) Hp = maxHp;
         }
-        else
+        else if (tradeInput != 5)
         {
             cout << "존재하지 않는 커멘드 입니다.\n";
         }
+        system("pause");
+        system("cls");
     }
-    
-    
+    cout << "거래를 하지않고 떠납니다.\n";
+    system("pause");
+    system("cls");
     
 }
 
@@ -112,7 +123,7 @@ void Player::HouseWork()
         cout << "(집에서 작업은 12까지 가능합니다.)" << endl;
         cout << "************************************************\n";
         cout << "   아이템을 사용해 거래합니다.\n";
-        cout << "   1. 휴식       -> 체력 회복(5), 정신력 회복(1)\n";
+        cout << "   1. 휴식       -> 체력 회복(5)\n";
         cout << "   2. 음식 사용  -> 체력 회복(20), 정신력 회복(3)  \n";
         cout << "   3. 장작 사용  -> 체력 회복(5), 정신력 회복(3)  \n";
         cout << "   4. 무기 사용  -> 힘 5 증가\n";
@@ -127,7 +138,7 @@ void Player::HouseWork()
             if (Hp > maxHp) Hp = maxHp;
             Sanity+=1;
             if (Sanity > maxSanity) Sanity = maxSanity;
-            cout << "휴식을 취합니다. 현재체력 : "<< Hp<<endl;
+            cout << "휴식을 취합니다. 현재체력 : "<< Hp <<endl;
             system("pause");
         }
         else if (HWinput == 2)
@@ -179,6 +190,17 @@ void Player::HouseWork()
     
     
     
+}
+
+void Player::NewDay()
+{
+    cout << "탐색 횟수를 전부 소진하였습니다.\n";
+    Hp -= 5;
+    Sanity -= 5;
+    cout << "새로운 날이 밝았습니다.(체력 -20, 정신력 -5)\n";
+    cout << "현재 체력 : " << Hp << "현재 정신력 : "<< Sanity << endl; 
+    system("pause");
+    system("cls");
 }
 
 /*

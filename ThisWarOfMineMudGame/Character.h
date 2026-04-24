@@ -22,7 +22,7 @@ class Character
     int GetSanity();
     int GetMaxSanity();
     //기능 함수
-    bool isAlive() const { return (Hp > 0); }
+    bool isAlive() const { return (Hp > 0 && Sanity > 0); }
     void TakeDamage(int damage);
     virtual int Attack() const;
 };
