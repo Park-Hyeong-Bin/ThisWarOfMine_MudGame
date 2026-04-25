@@ -113,7 +113,7 @@ void Route::RandomEvent(int routeCount,Player& player, Enemy& enemy)
         if (routeCount != 1)
         {
             cout << "################################################################\n";
-            cout << "#                       탐색을 시작합니다.                       #\n";
+            cout << "#                       탐색을 시작합니다.                     #\n";
             cout << "################################################################\n";
             for (int i = 0; i < routeCount; i++)
             {
@@ -146,6 +146,7 @@ void Route::RandomEvent(int routeCount,Player& player, Enemy& enemy)
                             player.Loot(enemy.GetRewrad());
                         }
                     }
+                    enemy.SetHp();
                 }
                 else
                 {

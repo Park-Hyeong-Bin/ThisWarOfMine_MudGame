@@ -16,6 +16,7 @@ Character::Character(int hp, int sanity, int power, int guard)
 void Character::TakeDamage(int damage)
 {
     int FinalDamage = damage-guard;
+    if (FinalDamage <= 0) {FinalDamage = 1;}
     Hp -= FinalDamage;
     cout << FinalDamage;
     if (Hp < 0) Hp = 0;
@@ -24,4 +25,8 @@ void Character::TakeDamage(int damage)
 int Character::Attack() const
 {
     return (int)attackDamage;
+}
+void Character::SetHp()
+{
+    Hp = maxHp;
 }

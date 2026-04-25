@@ -26,4 +26,5 @@ class Character
     bool isAlive() const { return (Hp > 0 && Sanity > 0);}
     void TakeDamage(int damage);
     virtual int Attack() const;
+    void SetHp();
 };

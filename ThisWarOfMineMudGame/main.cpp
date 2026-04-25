@@ -80,9 +80,16 @@ int main(){
         Route Route(routeNum);
         //적 생성
         vector<Enemy> enemys={
-            Enemy("술취한 군인", 80, 10, 25, 5, 4),
-            Enemy("노숙자", 35, 10, 10, 0, 1),
-            Enemy("무장 강도", 60, 10, 15, 2, 2)
+            Enemy("술취한 군인", 80, 10, 25, 5, 6),
+            Enemy("탈영 군인", 95, 10, 35, 8, 8),
+            Enemy("빼빼 마른 노숙자", 15, 5, 4, 0, 0),
+            Enemy("덩치 큰 노숙자", 40, 10, 12, 0, 1),
+            Enemy("노숙자", 38, 10, 10, 0, 1),
+            Enemy("상처많은 노숙자", 10, 10, 4, 0, 0),
+            Enemy("약해 보이는 노숙자", 15, 10, 8, 0, 0),
+            Enemy("덩치 큰 무장 강도", 70, 10, 18, 3, 4),
+            Enemy("무장 강도", 60, 10, 15, 2, 3),
+            Enemy("무장이 약한 강도", 55, 10, 18, 2, 2)
         };
         
         Route.RandomEvent(routeNum,player,enemys[rand() % enemys.size()]);

@@ -15,31 +15,40 @@ Player::Player(const string& name)
 
 void Player::Loot(int count)
 {
-      
+    if (count == 0) {
+    cout<<"그는 아무것도 가지고 있지 않았습니다.";
+    }
+    
     //count가 아이템을 vector에 추가
     cout << "************************************************\n";
     cout << "        아이템을 탐색합니다.! \n";
     cout << "************************************************\n";
     system("pause");
-    system("cls");
-    cout << "************************************************\n";
-    cout << "         현재 내 인벤토리 \n";
-    cout << "************************************************\n";
     for (int i = 0; i < count; i++)
     {
         //랜덤 숫자 1개씩 인벤토리 벡터에 넣음
         int Item = rand()%15 + 1;
         if (Item < 10)
         {
+            string itemName;
+            if (Item == 1 || Item == 2 || Item == 3) itemName = "음식";
+            else if (Item == 4 || Item == 5 ||Item == 6) itemName = "장작";
+            else if (Item == 7 || Item == 8) itemName = "의약품";
+            else if (Item == 9) itemName = "무기 부품";
+            else itemName = "None";
+            cout << ">>아이템을 발견했습니다! [" << itemName << "]\n";
             Inventory.push_back(Item);
         }
         else
         {
             cout << "아무것도 발견하지 못했습니다...\n";
-            system("pause");
-            system("cls");
         }
     }
+    system("pause");
+    system("cls");
+    cout << "************************************************\n";
+    cout << "         현재 내 인벤토리 \n";
+    cout << "************************************************\n";
     if (Inventory.size() > 0)
     {
         for (int i = 0; i < Inventory.size(); i++)
@@ -51,9 +60,9 @@ void Player::Loot(int count)
             else if (Inventory[i] == 9) itemName = "무기 부품";
             else itemName = "None";
             cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
-            system("pause");
-            system("cls");       
         }
+        system("pause");
+        system("cls");  
     }
     else
     {
@@ -126,7 +135,7 @@ void Player::HouseWork()
         cout << "   1. 휴식       -> 체력 회복(5)\n";
         cout << "   2. 음식 사용  -> 체력 회복(20), 정신력 회복(3)  \n";
         cout << "   3. 장작 사용  -> 체력 회복(5), 정신력 회복(3)  \n";
-        cout << "   4. 무기 사용  -> 힘 5 증가\n";
+        cout << "   4. 무기 부품 사용  -> 힘 증가(3), 방어력 증가(1)\n";
         cout << "   5. 약품 사용  -> 체력 회복 (60)\n";
         cout << "   6. 바로 탐색하기\n";
         cout << "************************************************\n";
@@ -136,8 +145,6 @@ void Player::HouseWork()
         {
             Hp+=5;
             if (Hp > maxHp) Hp = maxHp;
-            Sanity+=1;
-            if (Sanity > maxSanity) Sanity = maxSanity;
             cout << "휴식을 취합니다. 현재체력 : "<< Hp <<endl;
             system("pause");
         }
@@ -161,8 +168,9 @@ void Player::HouseWork()
         }
         else if (HWinput == 4)
         {
-           power += 5;
-            cout << "무기 부품을 사용하여, 사용중인 무기들을 정비합니다. 현재 힘 : "<<power<<endl;
+           power += 3;
+            guard += 1;
+            cout << "무기 부품을 사용하여, 사용중인 장비들을 정비합니다. 현재 힘 : "<<power << "현재 방어력 : "<<guard <<endl;
             system("pause");
         }
         else if (HWinput == 5)
@@ -202,34 +210,3 @@ void Player::NewDay()
     system("pause");
     system("cls");
 }
-
-/*
-* 클래스 정의
-상속 시켜야 함
-vector 사용 -> 예시 아이템
-
--------------------
-위 3개의 요구사항에 맞는 본인이 좋아하는 캐릭터가 등장하는
-RPG 등 게임을 만들어 보기
-
-----------------------
-제출
-구글문서로 github주소, 플레이 영상주소
-------------------------
-제출 github 주소와 시연 영상
-1.블로그에 본인 프로젝트에 대한 설명(이게 어떤 코드인지)
-예시) 이부분은 전투입니다. 
-+복습하면서, 구현하면서 오류 또는 이해가 어려웠던 부분
-이걸 어떻게 해결했고, 어떤게 해결방안이었고 결과는 어떻게 되었는지.
-
-
-내가 만들게임(디스워오브마인 머드게임버전)
-- 필요 생성자
-- 캐릭터(플레이어, 적, 거래npc), 지역(집, 안전한 탐사지, 위험한 탐사지)
-- 물건관련
-- 필요 행동(탐색, 전투, 출발, 귀환, 집에서 행동)
--탐색( 물건획득, 아무것도 없음, npc조우, 적 조우, 귀환) (총 5턴) (6턴이 되면 강제 귀가)
-- npc조우(대화, 거래, 이동)
-- 적 조우(전투, 도망)
-- 집(아이템을 소모해 회복) 총 3턴
- */

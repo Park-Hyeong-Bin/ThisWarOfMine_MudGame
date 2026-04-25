@@ -10,3 +10,4 @@ name(name), rewrad(rewrad)
 {
     attackDamage = power * 0.5f;
 }
+
