@@ -171,6 +171,26 @@ void Player::Trade()
         {
             cout << "존재하지 않는 커멘드 입니다.\n";
         }
+        cout << "************************************************\n";
+        cout << "         현재 내 인벤토리 \n";
+        cout << "************************************************\n";
+        if (Inventory.size() > 0)
+        {
+            for (int i = 0; i < Inventory.size(); i++)
+            {
+                string itemName;
+                if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
+                else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
+                else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
+                else if (Inventory[i] == 9) itemName = "무기 부품";
+                else itemName = "None";
+                cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
+            }
+        }
+        else
+        {
+            cout << "현재 아이템이 존재하지 않습니다.\n";
+        }
         system("pause");
         system("cls");
     }
@@ -281,10 +301,33 @@ void Player::Hospital()
         {
             cout << "존재하지 않는 커멘드 입니다.\n";
         }
+        
+        
+        cout << "************************************************\n";
+        cout << "         현재 내 인벤토리 \n";
+        cout << "************************************************\n";
+        if (Inventory.size() > 0)
+        {
+            for (int i = 0; i < Inventory.size(); i++)
+            {
+                string itemName;
+                if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
+                else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
+                else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
+                else if (Inventory[i] == 9) itemName = "무기 부품";
+                else itemName = "None";
+                cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
+            }
+        }
+        else
+        {
+            cout << "현재 아이템이 존재하지 않습니다.\n";
+        }
         system("pause");
         system("cls");
     }
-    cout << "간단한 치료만 받고 떠납니다.\n";
+    cout << "간단한 치료만 받고 떠납니다. 체력 회복(25)\n";
+    Hp+=25;
     "************************************************\n";
     cout << "많은 도움은 되지 못하겠지만, 병원은 언제나 열려있습니다.\n";
     system("pause");
