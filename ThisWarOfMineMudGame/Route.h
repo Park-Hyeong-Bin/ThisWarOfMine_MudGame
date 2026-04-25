@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Enemy.h"
 class Route
 {
     
@@ -8,7 +9,7 @@ class Route
     int routCount;
     
     Route(int routeCount);
-    void RandomEvent(int routeCount, Player& player);
-    
+    void RandomEvent(int routeCount, Player& player,Enemy& enemy);
+    void Battle(Player& player,Enemy& enemy);
     
 };

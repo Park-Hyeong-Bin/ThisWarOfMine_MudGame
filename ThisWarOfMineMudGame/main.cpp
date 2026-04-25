@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include "Character.h"
@@ -15,6 +16,7 @@ void nextPhase() {
 
 
 int main(){
+    
     string userName;
     int aliveTime = 0;
     system("cls");
@@ -76,8 +78,15 @@ int main(){
         }
         }
         Route Route(routeNum);
-        Route.RandomEvent(routeNum,player);
-        player.NewDay();
+        //적 생성
+        vector<Enemy> enemys={
+            Enemy("술취한 군인", 80, 10, 25, 5, 4),
+            Enemy("노숙자", 35, 10, 10, 0, 1),
+            Enemy("무장 강도", 60, 10, 15, 2, 2)
+        };
+        
+        Route.RandomEvent(routeNum,player,enemys[rand() % enemys.size()]);
+        if (player.isAlive() == true) {player.NewDay();}
     }
     //종료
     if (player.isAlive() != true)
@@ -95,11 +104,11 @@ int main(){
         cout << "|  |  |  |   \\      /   |   __|  |      / \n";
         cout << "|  `--'  |    \\    /    |  |____ |  |\\  \\--.\n";
         cout << " \\______/      \\__/     |_______|| _| `.___|\n";
-        if (player.GetHp() == 0)
+        if (player.GetHp() <= 0)
         {
             cout << "당신은 살아남지 못하였습니다.\n";
         }
-        else if (player.GetSanity() > 0){
+        else if (player.GetSanity() <= 0){
             cout << "당신은 우울증에 시달려 자살하고 말았습니다.\n";
         }
     }

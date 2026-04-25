@@ -1,4 +1,7 @@
 #include "Character.h"
+#include <iostream>
+
+using namespace ::std;
 
 //외부 입력 값 세팅 초기화
 Character::Character(int hp, int sanity, int power, int guard)
@@ -14,6 +17,7 @@ void Character::TakeDamage(int damage)
 {
     int FinalDamage = damage-guard;
     Hp -= FinalDamage;
+    cout << FinalDamage;
     if (Hp < 0) Hp = 0;
 }
 

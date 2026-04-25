@@ -17,12 +17,13 @@ class Character
     virtual ~Character(){}
     
     //Getter
-    int GetHp();
-    int GetMaxHp();
-    int GetSanity();
-    int GetMaxSanity();
+    int GetHp(){return Hp;}
+    int GetMaxHp(){return maxHp;}
+    int GetSanity(){return Sanity;}
+    int GetMaxSanity(){return maxSanity;}
+    int GetDamage(){return power*0.5f;}
     //기능 함수
-    bool isAlive() const { return (Hp > 0 && Sanity > 0); }
+    bool isAlive() const { return (Hp > 0 && Sanity > 0);}
     void TakeDamage(int damage);
     virtual int Attack() const;
 };

@@ -4,7 +4,7 @@
 using namespace std;
 
 Player::Player(const string& name)
-    :Character(100,25,15,0),
+    :Character(50,25,20,0),
     name(name)
 {
     Hp = maxHp;
@@ -122,7 +122,7 @@ void Player::HouseWork()
         cout << "무슨 작업을 하시겠습니까? 현재 시간 : " << AM << endl;
         cout << "(집에서 작업은 12까지 가능합니다.)" << endl;
         cout << "************************************************\n";
-        cout << "   아이템을 사용해 거래합니다.\n";
+        cout << "   아이템을 사용해 정비합니다. 현재체력 : "<< Hp << "현재 정신력 : "<< Sanity<<endl;
         cout << "   1. 휴식       -> 체력 회복(5)\n";
         cout << "   2. 음식 사용  -> 체력 회복(20), 정신력 회복(3)  \n";
         cout << "   3. 장작 사용  -> 체력 회복(5), 정신력 회복(3)  \n";
@@ -197,7 +197,7 @@ void Player::NewDay()
     cout << "탐색 횟수를 전부 소진하였습니다.\n";
     Hp -= 5;
     Sanity -= 5;
-    cout << "새로운 날이 밝았습니다.(체력 -20, 정신력 -5)\n";
+    cout << "새로운 날이 밝았습니다.(체력 -5, 정신력 -5)\n";
     cout << "현재 체력 : " << Hp << "현재 정신력 : "<< Sanity << endl; 
     system("pause");
     system("cls");
