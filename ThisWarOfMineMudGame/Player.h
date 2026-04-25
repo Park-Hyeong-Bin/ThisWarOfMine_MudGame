@@ -21,8 +21,9 @@ class Player : public Character
     
     //기능함수
     void Loot(int cout = 1);
-    void UseInventory(vector<int> Inventory);
+    bool UseInventory(vector<int>& Inventory, int item_Code);
     void Trade();
+    void Hospital();
     void HouseWork();
     void NewDay();
 };

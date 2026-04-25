@@ -122,8 +122,8 @@ void Route::RandomEvent(int routeCount,Player& player, Enemy& enemy)
                 random = rand() % 10;
                 if (routeCount > 5)
                 {
-                    if (random > 3 && random < 7){player.Loot();}
-                    else if (random >7)
+                    if (random < 5){player.Loot();}
+                    else if (random < 7)
                     {
                         cout << "이봐, " << player.GetName()<<" 나랑 거래할텐가?"<<endl;
                         player.Trade();
@@ -165,8 +165,8 @@ void Route::RandomEvent(int routeCount,Player& player, Enemy& enemy)
         else
         {
             cout << "안녕하세요, " << player.GetName()<<endl;
-            cout << "물자를 지원해주신다면 치료해드리도록 하겠습니다."<<endl;
-            player.Trade();
+            cout << "물자를 지원해주시면 감사하겠습니다."<<endl;
+            player.Hospital();
         }
     }
 }
