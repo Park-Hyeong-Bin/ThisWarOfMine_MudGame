@@ -5,15 +5,12 @@
 #include <vector>
 #include "Player.h"
 #include "Route.h"
-
-
 using namespace std;
 
 void nextPhase() {
     system("pause");
     system("cls");
 }
-
 
 int main(){
     
@@ -124,12 +121,5 @@ int main(){
         cout<<"세상에 종전이 찾아왔습니다.\n";
         cout<<"당신은 이 전쟁 속 에서 살아 남았습니다.";
     }
-    
-    
-    
-    
-    
-        
-        
     
 }

@@ -271,12 +271,14 @@ void Player::Hospital()
         {
             if (UseInventory(Inventory,7) == true)
             {
-                power += 7;
+                Sanity += 7;
+                if (Sanity > maxSanity) Sanity = maxSanity;
                 cout << "감사합니다. 이것으로 많은 사람을 살려보겠습니다.\n";
             }
             else if (UseInventory(Inventory,8) == true)
             {
-                power += 7;
+                Sanity += 7;
+                if (Sanity > maxSanity) Sanity = maxSanity;
                 cout << "약이군요. 어떻게 구하셨나요?\n";
             }
             else{cout << "가지고 계시지 않는군요. 이런 시기인만큼 이해합니다.\n";} 
@@ -287,8 +289,8 @@ void Player::Hospital()
         {
             if (UseInventory(Inventory,9) == true)
             {
-                Hp += 50;
-                if (Hp > maxHp) Hp = maxHp;
+                Sanity += 7;
+                if (Sanity > maxSanity) Sanity = maxSanity;
                 cout << "무기 부품이군요. 이게 있으니 수술을 할 수 있겠군요.\n";
             }
             else
@@ -328,6 +330,7 @@ void Player::Hospital()
     }
     cout << "간단한 치료만 받고 떠납니다. 체력 회복(25)\n";
     Hp+=25;
+    if (Hp > maxHp) Hp = maxHp;
     "************************************************\n";
     cout << "많은 도움은 되지 못하겠지만, 병원은 언제나 열려있습니다.\n";
     system("pause");

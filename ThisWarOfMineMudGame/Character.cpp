@@ -21,7 +21,6 @@ void Character::TakeDamage(int damage)
     cout << FinalDamage;
     if (Hp < 0) Hp = 0;
 }
-
 int Character::Attack() const
 {
     return (int)attackDamage;
