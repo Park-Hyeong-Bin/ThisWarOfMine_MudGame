@@ -16,8 +16,8 @@ class Player : public Character
     Player(const string& name);
     
     //Getters
-    string GetName() { return name; }
-    vector<int> GetInventory() { return Inventory; }
+    string GetName() const { return name; }
+    vector<int> GetInventory() const { return Inventory; }
     
     //기능함수
     void Loot(int cout = 1);

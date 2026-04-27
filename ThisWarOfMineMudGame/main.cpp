@@ -13,7 +13,7 @@ void nextPhase() {
 }
 
 int main(){
-    
+    srand((unsigned int)time(NULL));
     string userName;
     int aliveTime = 0;
     system("cls");
@@ -75,21 +75,39 @@ int main(){
         }
         }
         Route Route(routeNum);
-        //적 생성
-        vector<Enemy> enemys={
-            Enemy("술취한 군인", 80, 10, 25, 5, 6),
-            Enemy("탈영 군인", 95, 10, 35, 8, 8),
+        
+        // 적 목록 세분화
+        vector<Enemy> easyEnemies = {
             Enemy("빼빼 마른 노숙자", 15, 5, 4, 0, 0),
             Enemy("덩치 큰 노숙자", 40, 10, 12, 0, 1),
             Enemy("노숙자", 38, 10, 10, 0, 1),
             Enemy("상처많은 노숙자", 10, 10, 4, 0, 0),
-            Enemy("약해 보이는 노숙자", 15, 10, 8, 0, 0),
+            Enemy("약해 보이는 노숙자", 15, 10, 8, 0, 0)
+        };
+
+        vector<Enemy> hardEnemies = {
+            Enemy("술취한 군인", 80, 10, 25, 5, 6),
+            Enemy("탈영 군인", 95, 10, 35, 8, 8),
             Enemy("덩치 큰 무장 강도", 70, 10, 18, 3, 4),
             Enemy("무장 강도", 60, 10, 15, 2, 3),
             Enemy("무장이 약한 강도", 55, 10, 18, 2, 2)
         };
         
-        Route.RandomEvent(routeNum,player,enemys[rand() % enemys.size()]);
+        // 루트에 따른 적 선택
+        Enemy* selectedEnemy;
+        if (routInput == 1 || routInput == 2) {
+            // 안전하거나 병원 루트는 노숙자들만 등장
+            selectedEnemy = &easyEnemies[rand() % easyEnemies.size()];
+        } else {
+            // 위험한 루트는 모든 적이 나올 수 있지만, 강한 적이 나올 확률이 높음
+            if (rand() % 10 < 8) {
+                selectedEnemy = &hardEnemies[rand() % hardEnemies.size()];
+            } else {
+                selectedEnemy = &easyEnemies[rand() % easyEnemies.size()];
+            }
+        }
+        
+        Route.ExploreMap(player, *selectedEnemy, routInput);
         if (player.isAlive() == true) {player.NewDay();}
     }
     //종료

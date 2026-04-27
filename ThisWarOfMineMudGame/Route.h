@@ -10,6 +10,7 @@ class Route
     
     Route(int routeCount);
     void RandomEvent(int routeCount, Player& player,Enemy& enemy);
-    void Battle(Player& player,Enemy& enemy);
+    bool Battle(Player& player,Enemy& enemy);
+    void ExploreMap(Player& player, Enemy& enemy, int routeType);
     
 };
