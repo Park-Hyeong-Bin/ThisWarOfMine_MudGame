@@ -14,7 +14,7 @@ class Character
     
     public:
     Character(int hp, int sanity, int power, int guard);
-    virtual ~Character(){}
+    virtual ~Character();
     
     //Getter
     int GetHp(){return Hp;}

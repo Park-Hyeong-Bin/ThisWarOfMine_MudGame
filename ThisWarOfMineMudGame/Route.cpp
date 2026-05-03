@@ -1,9 +1,13 @@
 #include "Route.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Item.h"
+#include "GameInstance.h"
 #include <string>
 #include <iostream>
 #include <vector>
+#include <iterator>
+#include <cstdlib>
 
 using namespace std;
 
@@ -127,7 +131,10 @@ void Route::RandomEvent(int routeCount,Player& player, Enemy& enemy)
                 random = rand() % 10;
                 if (routeCount > 5)
                 {
-                    if (random < 5){player.Loot();}
+                    if (random < 5)
+                    {
+                        player.Loot();
+                    }
                     else if (random < 7)
                     {
                         cout << "이봐, " << player.GetName()<<" 나랑 거래할텐가?"<<endl;
@@ -148,7 +155,11 @@ void Route::RandomEvent(int routeCount,Player& player, Enemy& enemy)
                         else if (enemy.isAlive() == false)
                         {
                             cout << "당신은 전투에서 승리하였습니다!\n";
-                            player.Loot(enemy.GetRewrad());
+                            Item reward;
+                            reward.name = "적의 전리품";
+                            reward.itemCode = enemy.Drop();
+                            // 개별 아이템 획득은 기존대로 유지
+                            player.Loot(reward);
                         }
                     }
                     enemy.SetHp();

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -15,8 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
+    <ClCompile Include="Character.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="Collector.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="Deserter.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="Enemy.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="EnemyDB.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="FireFighter.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="GameInstance.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="Item.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="ItemData.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="main.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="Player.cpp"><Filter>소스 파일</Filter></ClCompile>
+    <ClCompile Include="Route.cpp"><Filter>소스 파일</Filter></ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Character.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="Collector.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="Deserter.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="Enemy.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="EnemyDB.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="FireFighter.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="GameInstance.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="Item.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="ItemData.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="Player.h"><Filter>헤더 파일</Filter></ClInclude>
+    <ClInclude Include="Route.h"><Filter>헤더 파일</Filter></ClInclude>
   </ItemGroup>
 </Project>

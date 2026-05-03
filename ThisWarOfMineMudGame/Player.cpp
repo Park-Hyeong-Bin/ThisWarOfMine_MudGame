@@ -2,76 +2,81 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <iomanip>
+
+#include "GameInstance.h"
+
 using namespace std;
 
 Player::Player(const string& name)
-    :Character(50,25,20,0),
-    name(name)
+    :Character(70,35,25,0), 
+    name(name), className("일반인"), I_Size(24)
 {
-    Hp = maxHp;
-    Sanity = maxSanity;
-    attackDamage = power * 0.5f;
-    
+    Inventory.reserve(I_Size);
 }
 
-void Player::Loot(int count)
+Player::Player(const string& name, const string& className)
+    :Character(70,35,25,0),
+    name(name), className(className), I_Size(24)
 {
-    if (count == 0) {
-    cout<<"그는 아무것도 가지고 있지 않았습니다.";
+    Inventory.reserve(I_Size);
+}
+
+Player::Player(const string& name, const string& className, int hp, int san, int pow, int gua, int s)
+    :Character(hp, san, pow, gua),
+    name(name), className(className), I_Size(s)
+{
+    Inventory.reserve(I_Size);
+}
+
+Player::~Player()
+{
+}
+
+void Player::Loot()
+{
+    GameInstance& gameInstance = GameInstance::GetGameInstance();
+    auto& itemDB = gameInstance.itemDB;
+    
+    // 대상 타입 필터링 (Material, Consumable, ETC)
+    vector<int> candidates;
+    for (auto& pair : itemDB) {
+        if (pair.second.type == ItemType::Material || 
+            pair.second.type == ItemType::Consumable || 
+            pair.second.type == ItemType::ETC) {
+            candidates.push_back(pair.first);
+        }
+    }
+
+    if (!candidates.empty()) {
+        cout << ">> 아이템 3개를 발견했습니다!\n";
+        for (int k = 0; k < 3; k++) {
+            int selectedCode = candidates[rand() % candidates.size()];
+            Item item;
+            item.name = itemDB[selectedCode].name;
+            item.itemCode = selectedCode;
+            item.type = itemDB[selectedCode].type;
+            
+            // 기존 Loot(item) 호출하여 인벤토리에 추가
+            Loot(item);
+        }
+    } else {
+        cout << ">> 주변에서 쓸만한 물건을 찾지 못했습니다...\n";
     }
     
-    //count가 아이템을 vector에 추가
-    cout << "************************************************\n";
-    cout << "        아이템을 탐색합니다.! \n";
-    cout << "************************************************\n";
-    system("pause");
-    for (int i = 0; i < count; i++)
-    {
-        //랜덤 숫자 1개씩 인벤토리 벡터에 넣음
-        int Item = rand()%15 + 1;
-        if (Item < 10)
-        {
-            string itemName;
-            if (Item == 1 || Item == 2 || Item == 3) itemName = "음식";
-            else if (Item == 4 || Item == 5 ||Item == 6) itemName = "장작";
-            else if (Item == 7 || Item == 8) itemName = "의약품";
-            else if (Item == 9) itemName = "무기 부품";
-            else itemName = "None";
-            cout << ">>아이템을 발견했습니다! [" << itemName << "]\n";
-            Inventory.push_back(Item);
-        }
-        else
-        {
-            cout << "아무것도 발견하지 못했습니다...\n";
-        }
-    }
+    SortInventory();
+    PrintInventory();
+    
     system("pause");
     system("cls");
-    cout << "************************************************\n";
-    cout << "         현재 내 인벤토리 \n";
-    cout << "************************************************\n";
-    if (Inventory.size() > 0)
-    {
-        for (int i = 0; i < Inventory.size(); i++)
-        {
-            string itemName;
-            if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
-            else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
-            else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
-            else if (Inventory[i] == 9) itemName = "무기 부품";
-            else itemName = "None";
-            cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
-        }
-        system("pause");
-        system("cls");  
-    }
-    else
-    {
-        cout << "현재 아이템이 존재하지 않습니다.\n";
-        system("pause");
-        system("cls");
-    }
 }
+
+void Player::Loot(Item item)
+{
+    cout << "[획득] "<< item.name <<"\n";
+    Inventory.emplace_back(std::move(item)); // Item을 인벤토리 안으로 직접 이동 
+}
+
 
 void Player::Trade() 
 {
@@ -178,13 +183,7 @@ void Player::Trade()
         {
             for (int i = 0; i < Inventory.size(); i++)
             {
-                string itemName;
-                if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
-                else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
-                else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
-                else if (Inventory[i] == 9) itemName = "무기 부품";
-                else itemName = "None";
-                cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
+                cout << "> Slot" << to_string(i + 1) << "[" << Inventory[i].name << "]\n";
             }
         }
         else
@@ -273,7 +272,7 @@ void Player::Hospital()
             {
                 Sanity += 7;
                 if (Sanity > maxSanity) Sanity = maxSanity;
-                cout << "감사합니다. 이것으로 많은 사람을 살려보겠습니다.\n";
+                cout << "감사합니다. 이것으로 many 사람을 살려보겠습니다.\n";
             }
             else if (UseInventory(Inventory,8) == true)
             {
@@ -312,13 +311,7 @@ void Player::Hospital()
         {
             for (int i = 0; i < Inventory.size(); i++)
             {
-                string itemName;
-                if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
-                else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
-                else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
-                else if (Inventory[i] == 9) itemName = "무기 부품";
-                else itemName = "None";
-                cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
+                cout << "> Slot" << to_string(i + 1) << "[" << Inventory[i].name << "]\n";
             }
         }
         else
@@ -507,13 +500,7 @@ void Player::HouseWork()
         {
             for (int i = 0; i < Inventory.size(); i++)
             {
-                string itemName;
-                if (Inventory[i] == 1 || Inventory[i] == 2 || Inventory[i] == 3) itemName = "음식";
-                else if (Inventory[i] == 4 || Inventory[i] == 5 || Inventory[i] == 6) itemName = "장작";
-                else if (Inventory[i] == 7 || Inventory[i] == 8) itemName = "의약품";
-                else if (Inventory[i] == 9) itemName = "무기 부품";
-                else itemName = "None";
-                cout << "> Slot" << to_string(i+1) << "[" << itemName << "]\n";
+                cout << "> Slot" << to_string(i + 1) << "[" << Inventory[i].name << "]\n";
             }
         }
         else
@@ -536,12 +523,15 @@ void Player::NewDay()
     system("cls");
 }
 
-bool Player::UseInventory(vector<int>& Inventory, int item_Code)
+bool Player::UseInventory(vector<Item>& inv, int item_Code)
 {
-    auto it = find(Inventory.begin(), Inventory.end(), item_Code);
-    if (it != Inventory.end())
+    auto it = find_if(inv.begin(), inv.end(), [item_Code](const Item& item) {
+        return item.itemCode == item_Code;
+    });
+    
+    if (it != inv.end())
     {
-        Inventory.erase(it);
+        inv.erase(it);
         
         return true;
     }
@@ -550,4 +540,26 @@ bool Player::UseInventory(vector<int>& Inventory, int item_Code)
         return false;
     }
     
+}
+
+void Player::SortInventory()
+{
+    sort(Inventory.begin(), Inventory.end(), [](const Item& a, const Item& b) {
+        return a.name < b.name;
+    });
+}
+
+void Player::PrintInventory() const
+{
+    // 인벤토리 출력
+    cout << "==================================================\n";
+    cout << "||" << left << setw(46) << "          INVENTORY" << "||\n";
+    cout << "==================================================\n";
+    int i = 0;
+    // Range-based for문 + const auto&
+    for (const auto& item : Inventory)
+    {
+        string typeStr;
+        cout << " > Slot " << (i++)+1 << " < [" << item.name <<"]\n";
+    }
 }

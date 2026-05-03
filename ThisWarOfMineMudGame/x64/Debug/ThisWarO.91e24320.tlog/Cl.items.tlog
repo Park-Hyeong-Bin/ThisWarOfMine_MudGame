@@ -1,5 +1,12 @@
 C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Character.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Character.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Collector.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Collector.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Deserter.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Deserter.obj
 C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Enemy.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Enemy.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\EnemyDB.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\EnemyDB.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\FireFighter.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\FireFighter.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\GameInstance.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\GameInstance.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Item.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Item.obj
+C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\ItemData.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\ItemData.obj
 C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\main.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\main.obj
 C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Player.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Player.obj
 C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\Route.cpp;C:\Users\gram\RiderProjects\ThisWarOfMine_MudGame\ThisWarOfMineMudGame\x64\Debug\Route.obj

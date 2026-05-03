@@ -12,6 +12,10 @@ Character::Character(int hp, int sanity, int power, int guard)
     attackDamage = power * 0.5f;
 }
 
+Character::~Character()
+{
+}
+
 //기능 함수
 void Character::TakeDamage(int damage)
 {

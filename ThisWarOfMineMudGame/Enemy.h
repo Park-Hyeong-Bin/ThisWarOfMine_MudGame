@@ -1,6 +1,10 @@
 #pragma once
 #include "Character.h"
 #include <string>
+#include <vector>
+
+#include "EnemyDB.h"
+#include "Item.h"
 using namespace std;
 
 
@@ -8,10 +12,12 @@ class Enemy : public Character
 {
     private:
     string name;
-    int rewrad;
+    vector<int> dropPool;
 public:
-    Enemy(const string &name, int hp, int sanity, int power, int guard, int rewrad);
+    Enemy(const string& name, const EnemyDB& data);
     
     string GetName() const{return name;}
-    int GetRewrad() const{return rewrad;}
+    
+    virtual string GetAttackMessage() const {return "";}
+    virtual int Drop() const;
 };
